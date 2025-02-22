@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vista</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            font-style: italic;
+        }
+        .stars {
+            position: absolute;
+            font-size: 1.2em;
+            opacity: 0;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        footer {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>vista</h1>
+    <footer>
+        <a href="https://x.com/vistawtf" target="_blank">X</a>
+        <a href="https://github.com/vista-wtf" target="_blank">GitHub</a>
+    </footer>
+    <script>
+        function createStars() {
+            const symbols = ['₊', '˚', '⊹'];
+            for (let i = 0; i < 20; i++) {
+                let star = document.createElement('div');
+                star.classList.add('stars');
+                star.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                document.body.appendChild(star);
+                
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let duration = Math.random() * 3 + 2;
+                
+                star.style.left = `${x}px`;
+                star.style.top = `${y}px`;
+                star.style.animationDuration = `${duration}s`;
+                
+                setTimeout(() => { star.remove(); }, duration * 1000);
+            }
+        }
+        setInterval(createStars, 1000);
+    </script>
+</body>
+</html>
