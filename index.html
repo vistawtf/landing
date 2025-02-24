@@ -5,83 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vista</title>
     <style>
-        @import url('https://fonts.cdnfonts.com/css/aeonik');
         body {
-            font-family: 'Aeonik', sans-serif;
             background-color: black;
             color: white;
-            text-align: center;
+            font-family: 'Inter', sans-serif;
             margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
+            justify-content: flex-end;
+            align-items: flex-start;
             overflow: hidden;
+            position: relative;
+        }
+        .title-group {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            line-height: 1;
+            z-index: 2;
         }
         h1 {
-            font-size: 3em;
-            font-style: italic;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 2.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #888888;
+            margin-top: 8px;
+            font-weight: normal;
+        }
+        .links {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            height: 24px;
+            z-index: 2;
+        }
+        .links a {
+            display: flex;
+            align-items: center;
+            height: 24px;
+        }
+        .links svg {
+            height: 24px;
+            width: 24px;
+            fill: white;
         }
         .stars {
             position: absolute;
-            font-size: 1.2em;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        .star {
+            position: absolute;
+            font-size: 1.2rem;
+            color: white;
             opacity: 0;
-            animation: twinkle 2s infinite ease-in-out;
+            animation: twinkle 3s infinite;
         }
         @keyframes twinkle {
-            0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 0; transform: scale(0.8); }
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
-        footer {
-            position: absolute;
-            bottom: 20px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-            padding: 10px;
-        }
-        a {
-            text-decoration: none;
-            color: white;
-            font-size: 1.2em;
-            white-space: nowrap;
+        @media (max-width: 768px) {
+            body {
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+            .title-group, .links {
+                position: static;
+            }
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>vista</h1>
-    <footer>
-        <a href="https://x.com/vistawtf" target="_blank">X</a>
-        <a href="https://github.com/vistawtf" target="_blank">GitHub</a>
-    </footer>
+    <div class="stars" id="stars"></div>
+    <div class="title-group">
+        <h1>vista</h1>
+        <div class="subtitle">the ethereum shipping department</div>
+    </div>
+    <div class="links">
+        <a href="https://x.com/vistawtf" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </a>
+        <a href="https://github.com/vistawtf" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+        </a>
+    </div>
+
     <script>
         function createStars() {
-            const symbols = ['₊', '˚', '⊹'];
-            for (let i = 0; i < 20; i++) {
-                let star = document.createElement('div');
-                star.classList.add('stars');
-                star.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-                document.body.appendChild(star);
-                
-                let x = Math.random() * window.innerWidth;
-                let y = Math.random() * window.innerHeight;
-                let duration = Math.random() * 3 + 2;
-                
-                star.style.left = `${x}px`;
-                star.style.top = `${y}px`;
-                star.style.animationDuration = `${duration}s`;
-                
-                setTimeout(() => { star.remove(); }, duration * 1000);
+            const starsContainer = document.getElementById("stars");
+            const starChars = ['⊹', '˚', '₊'];
+            
+            // Clear any existing stars
+            starsContainer.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                let star = document.createElement("div");
+                star.className = "star";
+                star.innerText = starChars[Math.floor(Math.random() * starChars.length)];
+                star.style.top = Math.random() * 100 + "vh";
+                star.style.left = Math.random() * 100 + "vw";
+                star.style.animationDelay = Math.random() * 3 + "s";
+                starsContainer.appendChild(star);
             }
         }
-        setInterval(createStars, 1000);
+
+        // Initial creation
+        createStars();
+
+        // Recreate on resize
+        window.addEventListener('resize', () => {
+            createStars();
+        });
     </script>
 </body>
 </html>
