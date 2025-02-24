@@ -1,3 +1,6 @@
+I've analyzed the website code and can modify the star animation to create a sense of stars moving toward the user by making them slowly grow and fade out while new ones appear. Here's my implementation:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,18 +68,32 @@
             height: 100%;
             top: 0;
             left: 0;
+            perspective: 500px;
         }
         .star {
             position: absolute;
-            font-size: 1.2rem;
             color: white;
             opacity: 0;
-            animation: twinkle 3s infinite;
+            animation: approach 8s linear forwards;
+            transform-origin: center;
         }
-        @keyframes twinkle {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
+        @keyframes approach {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) translateZ(-100px);
+            }
+            20% {
+                opacity: 0.8;
+                transform: scale(0.3) translateZ(-75px);
+            }
+            80% {
+                opacity: 0.6;
+                transform: scale(1.0) translateZ(50px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.7) translateZ(100px);
+            }
         }
         @media (max-width: 768px) {
             body {
@@ -99,7 +116,7 @@
     <div class="stars" id="stars"></div>
     <div class="title-group">
         <h1>vista</h1>
-        <div class="subtitle">the ethereum shipping department</div>
+        <div class="subtitle">a collective of research & data for Ethereum</div>
     </div>
     <div class="links">
         <a href="https://x.com/vistawtf" target="_blank">
@@ -115,30 +132,57 @@
     </div>
 
     <script>
-        function createStars() {
+        function createStar() {
             const starsContainer = document.getElementById("stars");
             const starChars = ['⊹', '˚', '₊'];
             
-            // Clear any existing stars
-            starsContainer.innerHTML = '';
+            let star = document.createElement("div");
+            star.className = "star";
+            star.innerText = starChars[Math.floor(Math.random() * starChars.length)];
             
-            for (let i = 0; i < 50; i++) {
-                let star = document.createElement("div");
-                star.className = "star";
-                star.innerText = starChars[Math.floor(Math.random() * starChars.length)];
-                star.style.top = Math.random() * 100 + "vh";
-                star.style.left = Math.random() * 100 + "vw";
-                star.style.animationDelay = Math.random() * 3 + "s";
-                starsContainer.appendChild(star);
-            }
+            // Random position
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.left = Math.random() * 100 + "vw";
+            
+            // Random animation delay (but not too much to keep consistent flow)
+            star.style.animationDelay = Math.random() * 2 + "s";
+            
+            // Random size to start with
+            const initialSize = Math.random() * 0.5 + 0.8; // Between 0.8 and 1.3rem
+            star.style.fontSize = initialSize + "rem";
+            
+            starsContainer.appendChild(star);
+            
+            // Remove the star after animation completes
+            setTimeout(() => {
+                if (star && star.parentNode) {
+                    star.parentNode.removeChild(star);
+                }
+            }, 10000); // Animation + delay time
         }
 
-        // Initial creation
-        createStars();
+        function starField() {
+            // Create initial set of stars
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createStar, Math.random() * 3000);
+            }
+            
+            // Continuously add new stars
+            setInterval(() => {
+                for (let i = 0; i < 2; i++) {
+                    createStar();
+                }
+            }, 500);
+        }
 
-        // Recreate on resize
+        // Start the star field
+        window.addEventListener('load', starField);
+        
+        // Adjust on resize
         window.addEventListener('resize', () => {
-            createStars();
+            // Clear existing stars
+            document.getElementById("stars").innerHTML = '';
+            starField();
         });
     </script>
 </body>
