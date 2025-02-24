@@ -18,6 +18,7 @@
             align-items: flex-start;
             overflow: hidden;
             position: relative;
+            cursor: default;
         }
         .title-group {
             position: absolute;
@@ -73,6 +74,7 @@
             opacity: 0;
             animation: approach 8s linear forwards;
             transform-origin: center;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
         @keyframes approach {
             0% {
@@ -129,6 +131,70 @@
     </div>
 
     <script>
+        let mouseX = 0;
+        let mouseY = 0;
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+        let prevMouseX = 0;
+        let prevMouseY = 0;
+        let mouseSpeed = 0;
+        
+        // Track mouse position and calculate speed
+        document.addEventListener('mousemove', (e) => {
+            // Calculate mouse speed (distance moved since last event)
+            const dx = e.clientX - prevMouseX;
+            const dy = e.clientY - prevMouseY;
+            mouseSpeed = Math.sqrt(dx*dx + dy*dy);
+            mouseSpeed = Math.min(mouseSpeed, 50); // Cap speed value
+            
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Apply dramatic movement immediately
+            moveStars();
+        });
+        
+        function moveStars() {
+            // Calculate mouse position as percentage of window
+            const xPercent = mouseX / windowWidth - 0.5; // -0.5 to 0.5
+            const yPercent = mouseY / windowHeight - 0.5; // -0.5 to 0.5
+            
+            // Get all stars
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                // Get star's position
+                const rect = star.getBoundingClientRect();
+                const starX = rect.left + rect.width / 2;
+                const starY = rect.top + rect.height / 2;
+                
+                // Calculate vector from mouse to star
+                const vectorX = starX - mouseX;
+                const vectorY = starY - mouseY;
+                
+                // Normalize vector
+                const distance = Math.sqrt(vectorX * vectorX + vectorY * vectorY);
+                const normalizedX = vectorX / (distance || 1);
+                const normalizedY = vectorY / (distance || 1);
+                
+                // Calculate influence based on distance (inverse square falloff)
+                // Smaller divisor = broader influence
+                const influence = 100000 / (distance * distance + 100);
+                
+                // Calculate movement based on normalized vector, influence, and speed
+                // Much higher multipliers (80px and 80px) for very noticeable movement
+                // Adding mouse speed influence for more dynamic effect
+                const speedFactor = 1 + (mouseSpeed / 50);
+                const moveX = normalizedX * influence * 80 * speedFactor;
+                const moveY = normalizedY * influence * 80 * speedFactor;
+                
+                // Apply dramatic transform
+                star.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        }
+
         function createStar() {
             const starsContainer = document.getElementById("stars");
             const starChars = ['⊹', '˚', '₊'];
@@ -141,7 +207,7 @@
             star.style.top = Math.random() * 100 + "vh";
             star.style.left = Math.random() * 100 + "vw";
             
-            // Random animation delay (but not too much to keep consistent flow)
+            // Random animation delay
             star.style.animationDelay = Math.random() * 2 + "s";
             
             // Random size to start with
@@ -159,27 +225,51 @@
         }
 
         function starField() {
-            // Create initial set of stars
-            for (let i = 0; i < 30; i++) {
+            // Create more stars for a denser field
+            for (let i = 0; i < 40; i++) {
                 setTimeout(createStar, Math.random() * 3000);
             }
             
             // Continuously add new stars
             setInterval(() => {
-                for (let i = 0; i < 2; i++) {
+                for (let i = 0; i < 3; i++) {
                     createStar();
                 }
-            }, 500);
+            }, 400);
         }
+
+        // Update window dimensions on resize
+        window.addEventListener('resize', () => {
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
+            
+            // Clear existing stars
+            document.getElementById("stars").innerHTML = '';
+            starField();
+        });
 
         // Start the star field
         window.addEventListener('load', starField);
         
-        // Adjust on resize
-        window.addEventListener('resize', () => {
-            // Clear existing stars
-            document.getElementById("stars").innerHTML = '';
-            starField();
+        // Handle touch events for mobile devices
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const newX = e.touches[0].clientX;
+                const newY = e.touches[0].clientY;
+                
+                // Calculate speed for touch as well
+                const dx = newX - prevMouseX;
+                const dy = newY - prevMouseY;
+                mouseSpeed = Math.sqrt(dx*dx + dy*dy);
+                mouseSpeed = Math.min(mouseSpeed, 50);
+                
+                prevMouseX = mouseX;
+                prevMouseY = mouseY;
+                mouseX = newX;
+                mouseY = newY;
+                
+                moveStars();
+            }
         });
     </script>
 </body>
