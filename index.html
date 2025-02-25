@@ -5,21 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vista</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            height: 100%;
+        }
+        
         body {
-            background-color: black;
-            color: white;
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
+            height: 100%;
+            cursor: default;
+            overflow-x: hidden;
+        }
+
+        section {
+            scroll-snap-align: start;
             height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
+            position: relative;
+        }
+
+        #home {
+            background-color: black;
+            color: white;
             justify-content: flex-end;
             align-items: flex-start;
-            overflow: hidden;
-            position: relative;
-            cursor: default;
         }
+        
+        #about {
+            background-color: #111;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 600px;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
         .title-group {
             position: absolute;
             bottom: 20px;
@@ -27,6 +63,7 @@
             line-height: 1;
             z-index: 2;
         }
+        
         h1 {
             font-style: normal;
             font-weight: normal;
@@ -34,12 +71,14 @@
             margin: 0;
             padding: 0;
         }
+        
         .subtitle {
             font-size: 1rem;
             color: #888888;
             margin-top: 8px;
             font-weight: normal;
         }
+        
         .links {
             position: absolute;
             bottom: 20px;
@@ -50,16 +89,19 @@
             height: 24px;
             z-index: 2;
         }
+        
         .links a {
             display: flex;
             align-items: center;
             height: 24px;
         }
+        
         .links svg {
             height: 24px;
             width: 24px;
             fill: white;
         }
+        
         .stars {
             position: absolute;
             width: 100%;
@@ -67,7 +109,9 @@
             top: 0;
             left: 0;
             perspective: 500px;
+            pointer-events: none;
         }
+        
         .star {
             position: absolute;
             color: white;
@@ -75,7 +119,62 @@
             animation: approach 8s linear forwards;
             transform-origin: center;
             transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform, opacity;
         }
+        
+        .navigation {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-dot.active {
+            background-color: white;
+        }
+        
+        .email {
+            color: #4d9aff;
+            font-weight: bold;
+        }
+
+        /* Header for second section */
+        .section-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            z-index: 10;
+        }
+        
+        .header-title {
+            font-size: 1.8rem;
+            font-weight: normal;
+        }
+        
+        .header-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
         @keyframes approach {
             0% {
                 opacity: 0;
@@ -94,41 +193,92 @@
                 transform: scale(1.7) translateZ(100px);
             }
         }
+        
         @media (max-width: 768px) {
-            body {
+            #home {
                 justify-content: center;
                 align-items: center;
                 text-align: center;
             }
-            .title-group, .links {
+            
+            .title-group {
                 position: static;
+                margin-bottom: 20px;
             }
+            
             .links {
+                position: static;
+                flex-direction: row;
+                gap: 20px;
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            .about-content {
+                padding: 40px 20px;
+            }
+            
+            .section-header {
                 flex-direction: column;
                 gap: 10px;
-                margin-top: 20px;
+                align-items: center;
+            }
+            
+            .header-links {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    <div class="title-group">
-        <h1>vista</h1>
-        <div class="subtitle">a collective of research & data for Ethereum</div>
+    <div class="navigation">
+        <a href="#home" class="nav-dot active"></a>
+        <a href="#about" class="nav-dot"></a>
     </div>
-    <div class="links">
-        <a href="https://x.com/vistawtf" target="_blank">
-            <svg viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-        </a>
-        <a href="https://github.com/vistawtf" target="_blank">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-        </a>
-    </div>
+
+    <section id="home">
+        <div class="stars" id="stars"></div>
+        <div class="title-group">
+            <h1>vista</h1>
+            <div class="subtitle">a collective of research & data for Ethereum</div>
+        </div>
+        <div class="links">
+            <a href="https://x.com/vistawtf" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/vistawtf" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="about">
+        <!-- Added header for the second section -->
+        <div class="section-header">
+            <div class="header-title">vista</div>
+            <div class="header-links">
+                <a href="https://x.com/vistawtf" target="_blank">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/vistawtf" target="_blank">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="about-content">
+            <h2>Do you want to work with us?</h2>
+            <p>Our team has done research and data for some of the biggest projects in web3. Including Gitcoin, and independent core Ethereum research. Contact us at <span class="email">info@vista.wtf</span></p>
+        </div>
+    </section>
 
     <script>
         let mouseX = 0;
@@ -138,9 +288,26 @@
         let prevMouseX = 0;
         let prevMouseY = 0;
         let mouseSpeed = 0;
+        let activeStars = [];
+        let maxStars = 60; // Limit total number of stars
+        let isScrolling = false;
+        let scrollTimeout;
         
-        // Track mouse position and calculate speed
-        document.addEventListener('mousemove', (e) => {
+        // Throttle function to limit execution rate
+        function throttle(func, delay) {
+            let lastCall = 0;
+            return function(...args) {
+                const now = new Date().getTime();
+                if (now - lastCall < delay) {
+                    return;
+                }
+                lastCall = now;
+                return func(...args);
+            };
+        }
+        
+        // Track mouse position and calculate speed with throttling
+        document.addEventListener('mousemove', throttle((e) => {
             // Calculate mouse speed (distance moved since last event)
             const dx = e.clientX - prevMouseX;
             const dy = e.clientY - prevMouseY;
@@ -152,50 +319,67 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Apply dramatic movement immediately
-            moveStars();
-        });
+            // Only move stars if we're not currently scrolling
+            if (!isScrolling) {
+                moveStars();
+            }
+        }, 16)); // Approximately 60fps
         
+        // Optimize star movement
         function moveStars() {
-            // Calculate mouse position as percentage of window
-            const xPercent = mouseX / windowWidth - 0.5; // -0.5 to 0.5
-            const yPercent = mouseY / windowHeight - 0.5; // -0.5 to 0.5
+            // Don't process if there are no stars or we're scrolling
+            if (activeStars.length === 0) return;
             
-            // Get all stars
-            const stars = document.querySelectorAll('.star');
-            
-            stars.forEach(star => {
-                // Get star's position
-                const rect = star.getBoundingClientRect();
-                const starX = rect.left + rect.width / 2;
-                const starY = rect.top + rect.height / 2;
+            // Use requestAnimationFrame for better performance
+            requestAnimationFrame(() => {
+                // Get current visible viewport
+                const viewportTop = window.scrollY;
+                const viewportBottom = viewportTop + windowHeight;
                 
-                // Calculate vector from mouse to star
-                const vectorX = starX - mouseX;
-                const vectorY = starY - mouseY;
-                
-                // Normalize vector
-                const distance = Math.sqrt(vectorX * vectorX + vectorY * vectorY);
-                const normalizedX = vectorX / (distance || 1);
-                const normalizedY = vectorY / (distance || 1);
-                
-                // Calculate influence based on distance (inverse square falloff)
-                // Smaller divisor = broader influence
-                const influence = 100000 / (distance * distance + 100);
-                
-                // Calculate movement based on normalized vector, influence, and speed
-                // Much higher multipliers (80px and 80px) for very noticeable movement
-                // Adding mouse speed influence for more dynamic effect
-                const speedFactor = 1 + (mouseSpeed / 50);
-                const moveX = normalizedX * influence * 80 * speedFactor;
-                const moveY = normalizedY * influence * 80 * speedFactor;
-                
-                // Apply dramatic transform
-                star.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                // Only process stars that are in or near the current viewport
+                activeStars.forEach(star => {
+                    const rect = star.getBoundingClientRect();
+                    const starY = rect.top + window.scrollY;
+                    
+                    // Skip stars that are far from viewport
+                    if (starY < viewportTop - 200 || starY > viewportBottom + 200) return;
+                    
+                    const starX = rect.left + rect.width / 2;
+                    const starY_viewport = rect.top + rect.height / 2;
+                    
+                    // Calculate vector from mouse to star
+                    const vectorX = starX - mouseX;
+                    const vectorY = starY_viewport - mouseY;
+                    
+                    // Calculate distance only once
+                    const distanceSquared = vectorX * vectorX + vectorY * vectorY;
+                    const distance = Math.sqrt(distanceSquared);
+                    
+                    // Skip stars that are too far from mouse pointer (optimization)
+                    if (distance > 500) return;
+                    
+                    // Normalize vector
+                    const normalizedX = vectorX / (distance || 1);
+                    const normalizedY = vectorY / (distance || 1);
+                    
+                    // Calculate influence with simplified math
+                    const influence = 10000 / (distanceSquared + 100);
+                    
+                    // Calculate movement
+                    const speedFactor = 1 + (mouseSpeed / 50);
+                    const moveX = normalizedX * influence * 80 * speedFactor;
+                    const moveY = normalizedY * influence * 80 * speedFactor;
+                    
+                    // Apply transform
+                    star.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
             });
         }
 
         function createStar() {
+            // Don't create more stars if we've reached the maximum
+            if (activeStars.length >= maxStars) return;
+            
             const starsContainer = document.getElementById("stars");
             const starChars = ['⊹', '˚', '₊'];
             
@@ -215,44 +399,80 @@
             star.style.fontSize = initialSize + "rem";
             
             starsContainer.appendChild(star);
+            activeStars.push(star);
             
             // Remove the star after animation completes
             setTimeout(() => {
                 if (star && star.parentNode) {
                     star.parentNode.removeChild(star);
+                    const index = activeStars.indexOf(star);
+                    if (index > -1) {
+                        activeStars.splice(index, 1);
+                    }
                 }
             }, 10000); // Animation + delay time
         }
 
         function starField() {
-            // Create more stars for a denser field
-            for (let i = 0; i < 40; i++) {
+            // Clear existing stars
+            document.getElementById("stars").innerHTML = '';
+            activeStars = [];
+            
+            // Create initial stars, but fewer to reduce load
+            for (let i = 0; i < 20; i++) {
                 setTimeout(createStar, Math.random() * 3000);
             }
             
-            // Continuously add new stars
+            // Continuously add new stars at a reduced rate
             setInterval(() => {
-                for (let i = 0; i < 3; i++) {
+                if (!isScrolling && activeStars.length < maxStars) {
                     createStar();
                 }
-            }, 400);
+            }, 800);
         }
 
-        // Update window dimensions on resize
-        window.addEventListener('resize', () => {
-            windowWidth = window.innerWidth;
-            windowHeight = window.innerHeight;
+        // Handle scroll events
+        window.addEventListener('scroll', function() {
+            // Mark as scrolling to pause heavy animations
+            isScrolling = true;
             
-            // Clear existing stars
-            document.getElementById("stars").innerHTML = '';
-            starField();
+            // Update active dot with throttling
+            throttledUpdateActiveDot();
+            
+            // Reset the timeout
+            clearTimeout(scrollTimeout);
+            
+            // Set a timeout to run after scrolling ends
+            scrollTimeout = setTimeout(function() {
+                isScrolling = false;
+            }, 100);
         });
 
-        // Start the star field
-        window.addEventListener('load', starField);
+        // Update window dimensions on resize (with debounce)
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                windowWidth = window.innerWidth;
+                windowHeight = window.innerHeight;
+                
+                // Only restart star field on significant resize
+                if (Math.abs(windowWidth - window.innerWidth) > 100 || 
+                    Math.abs(windowHeight - window.innerHeight) > 100) {
+                    starField();
+                }
+            }, 200);
+        });
+
+        // Start the star field when page loads
+        window.addEventListener('load', () => {
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
+            starField();
+        });
         
-        // Handle touch events for mobile devices
-        document.addEventListener('touchmove', (e) => {
+        // Handle touch events for mobile devices (with throttling)
+        document.addEventListener('touchmove', throttle((e) => {
             if (e.touches.length > 0) {
                 const newX = e.touches[0].clientX;
                 const newY = e.touches[0].clientY;
@@ -268,9 +488,49 @@
                 mouseX = newX;
                 mouseY = newY;
                 
-                moveStars();
+                if (!isScrolling) {
+                    moveStars();
+                }
             }
+        }, 32)); // Lower rate for touch events
+        
+        // Navigation dot handling (throttled)
+        function updateActiveDot() {
+            const sections = document.querySelectorAll('section');
+            const navDots = document.querySelectorAll('.nav-dot');
+            
+            const scrollPosition = window.scrollY;
+            const halfwayPoint = windowHeight / 3;
+            
+            // Find which section is currently most visible
+            let currentSectionIndex = 0;
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                if (scrollPosition >= sectionTop - halfwayPoint) {
+                    currentSectionIndex = index;
+                }
+            });
+            
+            // Update active dot
+            navDots.forEach((dot, index) => {
+                if (index === currentSectionIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        const throttledUpdateActiveDot = throttle(updateActiveDot, 100);
+        
+        // Preload fonts to prevent layout shifts
+        document.fonts.ready.then(() => {
+            document.body.classList.add('fonts-loaded');
         });
+        
+        // Add passive flag to listeners for better performance
+        window.addEventListener('scroll', throttledUpdateActiveDot, { passive: true });
+        window.addEventListener('load', updateActiveDot, { passive: true });
     </script>
 </body>
 </html>
