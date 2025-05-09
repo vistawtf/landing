@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+body {
+  background: #111111;
+}
+
+@theme {
+  /* Fonts */
+  --font-sans: "Geist Variable", sans-serif;
+  --font-mono: "Geist Mono Variable", monospace;
+
+  /* Colors */
+  --color-vista-black: #111111;
+  --color-vista-orange: #ff5233;
+  --color-vista-gray-light: #999999;
+  --color-vista-gray-medium: #575757;
+  --color-vista-gray-dark: #191919;
+  --color-vista-light: #e4e2d8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
