@@ -11,11 +11,15 @@ body {
 
   /* Colors */
   --color-vista-black: #111111;
+
   --color-vista-orange: #ff5233;
-  --color-vista-orange-light: #ff7043;
+  --color-vista-orange-medium: #ff7043;
+  --color-vista-orange-light: #ff8a65;
+
   --color-vista-gray-light: #999999;
   --color-vista-gray-medium: #575757;
   --color-vista-gray-dark: #191919;
+
   --color-vista-light: #e4e2d8;
 }
 
