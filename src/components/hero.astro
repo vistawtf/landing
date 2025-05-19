@@ -1,23 +1,22 @@
+---
+import ArrowDownRight from './arrow-down-right.astro';
+---
+
 <div
-  class="min-h-[calc(100vh - 114px)] flex flex-col justify-center w-full py-16"
+  class="min-h-[calc(100vh - 114px)] flex flex-col justify-center w-full py-16 overflow-hidden"
   style="min-height: calc(100vh - 114px);"
   id="home"
 >
-  <div class="absolute top-32 right-0 -z-10 w-full">
+  <div class="absolute top-32 right-0 -z-10 w-full h-full overflow-hidden">
     <div class="max-w-screen-xl mx-auto relative">
       <img src="/header-bg.svg" alt="background" class="absolute top-0 -right-64" />
     </div>
   </div>
-  <div class="flex items-end gap-4 text-2xl md:text-[42px]">
-    <div class="text-white">vista</div>
-    <span class="text-vista-orange">₊˚⊹</span>
-  </div>
+  <img src="/logo.svg" alt="logo" class="w-[140px]" />
   <div
-    class="text-vista-gray-light text-3xl md:text-[46px] lg:text-[76px] max-w-screen-lg md:leading-[56px] lg:leading-[86px] mt-8 md:mb-16 mb-8"
+    class="text-vista-gray-light text-3xl md:text-[46px] lg:text-[76px] max-w-[800px] md:leading-[56px] lg:leading-[86px] mt-8 md:mb-16 mb-8"
   >
-    We help your organization make <div
-      class="md:border-b-4 border-b-2 border-vista-gray-dark-light border-box inline-block"
-    >
+    Make <div class="md:border-b-4 border-b-2 border-vista-gray-dark-light border-box inline-block">
       better decisions
     </div>
     with world-class <span class="text-vista-light">data systems</span>, <span
@@ -26,10 +25,10 @@
     <span class="text-vista-light"> modeling</span>.
   </div>
   <a
-    class="flex items-center justify-center gap-4 bg-vista-light hover:bg-vista-orange duration-200 hover:font-medium cursor-pointer rounded-[3px] text-sm font-mono h-[60px] w-[245px] md:mb-[114px]"
+    class="flex items-center justify-center gap-4 border border-white text-vista-light hover:text-black hover:border-transparent hover:bg-vista-orange-medium duration-200 hover:font-medium cursor-pointer rounded-[3px] font-mono h-[66px] w-[314px] md:mb-[114px] text-base"
     href="#about"
   >
-    <img src="/arrow-down.svg" alt="arrow" />
-    LEARN MORE ABOUT US
+    EXPLORE OUR SOLUTIONS
+    <ArrowDownRight class="size-4" />
   </a>
 </div>
