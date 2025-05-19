@@ -1,46 +1,35 @@
+---
+import { SolutionCard } from './solution-card';
+---
+
 <div class="min-h-[100dvh] flex items-center justify-center py-16" id="services">
-  <div class="flex gap-12 w-full md:flex-row flex-col">
-    <div class="text-[46px] md:text-[76px] lg:text-[119px] text-vista-light leading-none w-full">
-      Our<br />Solutions
-    </div>
-    <div class="w-full flex flex-col md:gap-24 gap-12">
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl md:text-[39px] text-vista-light">Data Engineering</h3>
-        <div class="flex flex-col gap-2">
-          <p class="text-vista-light text-base">
-            We design and maintain custom pipelines, real-time indexers, and backend systems.
-          </p>
-          <p class="text-vista-gray-light text-sm font-mono">
-            → Power your analytics, operations and products with reliable and high-performant
-            infrastructure.
-          </p>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl md:text-[39px] text-vista-light">Data Intelligence</h3>
-        <div class="flex flex-col gap-2">
-          <p class="text-vista-light text-base">
-            Dashboards and deep analysis for DeFi, DAOs, and onchain AI agents.
-          </p>
-          <p class="text-vista-gray-light text-sm font-mono">
-            → Accelerate your growth with actionable insights on user behavior, economic activity
-            and impact metrics.
-          </p>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <h3 class="text-2xl md:text-[39px] text-vista-light">Modeling & Simulation</h3>
-        <div class="flex flex-col gap-2">
-          <p class="text-vista-light text-base">
-            We model protocol mechanics, treasury flows, and governance scenarios.
-          </p>
-          <p class="text-vista-gray-light text-sm font-mono">
-            → Save money by forecasting behavior, stress-test design and incentive alignment.
-          </p>
-        </div>
-      </div>
+  <div class="flex gap-12 w-full flex-col">
+    <div class="text-[46px] md:text-[76px] text-vista-light leading-none w-full">Our Solutions</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+      <SolutionCard
+        image="/data-eng.svg"
+        title="Data Engineering"
+        subtitle="Design and maintenance of pipelines, real-time indexers, and backends."
+        description="Power your analytics, operations and products with reliable and high-performant infrastructure."
+        button="power your data"
+        client:only
+      />
+      <SolutionCard
+        image="/data-int.svg"
+        title="Data Intelligence"
+        subtitle="Dashboards and deep analysis for DeFi, DAOs, and onchain AI agents."
+        description="Accelerate your growth with actionable insights on user behavior, economic activity and impact metrics."
+        button="get clarity"
+        client:only
+      />
+      <SolutionCard
+        image="/mod-sim.svg"
+        title="Modeling & Simulation"
+        subtitle="We model protocol mechanics, financial data and risk scenarios."
+        description="Save money by forecasting behavior, stress-test design and align incentives."
+        button="kNOW MORE"
+        client:only
+      />
     </div>
   </div>
 </div>
