@@ -1,19 +1,51 @@
 import { useState, type FC } from 'react';
 
+import { DataEng } from './data-eng.tsx';
+import { DataInt } from './data-int.tsx';
+import { ModSim } from './mod-sim.tsx';
+
+const variants = {
+  dataEng: {
+    component: DataEng,
+    idleColor: '#FF8A65',
+    hoverColor: '#FF5233'
+  },
+  dataInt: {
+    component: DataInt,
+    idleColor: '#90CAF9',
+    hoverColor: '#2962FF'
+  },
+  modSim: {
+    component: ModSim,
+    idleColor: '#CE93D8',
+    hoverColor: '#EA80FC'
+  }
+};
+
+type Variant = keyof typeof variants;
+
 type Props = {
   image: string;
   title: string;
   subtitle: string;
   description: string;
   button: string;
+  variant: Variant;
 };
 
-export const SolutionCard: FC<Props> = ({ image, title, subtitle, description, button }) => {
+export const SolutionCard: FC<Props> = ({
+  image,
+  title,
+  subtitle,
+  description,
+  button,
+  variant
+}) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className={`cursor-pointer p-4 border rounded-md duration-200 flex flex-col justify-between ${hovered ? 'border-vista-gray-medium scale-105' : 'border-transparent'}`}
+      className={`cursor-pointer p-4 border rounded-md duration-400 flex flex-col justify-between ${hovered ? 'border-vista-gray-medium scale-103' : 'border-transparent'}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => {
@@ -21,11 +53,27 @@ export const SolutionCard: FC<Props> = ({ image, title, subtitle, description, b
       }}
     >
       <div>
-        <img src={image} alt={title} className="w-full h-auto mb-12" />
+        <div
+          className="duration-600"
+          style={{
+            color: hovered ? variants[variant].hoverColor : variants[variant].idleColor
+          }}
+        >
+          {variant === 'dataEng' && <variants.dataEng.component />}
+          {variant === 'dataInt' && <variants.dataInt.component />}
+          {variant === 'modSim' && <variants.modSim.component />}
+        </div>
         <h2 className="text-vista-light text-[34px] mb-2">{title}</h2>
         <h3 className="text-vista-gray-light text-lg mb-2">{subtitle}</h3>
         <p className="text-vista-gray-light font-mono font-light">
-          <span className={`duration-600 ${hovered ? 'text-vista-orange' : ''}`}>→</span>{' '}
+          <span
+            className={`duration-600`}
+            style={{
+              color: hovered ? variants[variant].hoverColor : ''
+            }}
+          >
+            →
+          </span>{' '}
           {description}
         </p>
       </div>
