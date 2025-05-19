@@ -2,6 +2,7 @@ import type { FC } from 'react';
 
 export const ModSim: FC = () => (
   <svg
+    className="w-full h-auto mb-12"
     width="343"
     height="202"
     viewBox="0 0 343 202"
