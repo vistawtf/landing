@@ -25,7 +25,6 @@ const variants = {
 type Variant = keyof typeof variants;
 
 type Props = {
-  image: string;
   title: string;
   subtitle: string;
   description: string;
@@ -33,14 +32,7 @@ type Props = {
   variant: Variant;
 };
 
-export const SolutionCard: FC<Props> = ({
-  image,
-  title,
-  subtitle,
-  description,
-  button,
-  variant
-}) => {
+export const SolutionCard: FC<Props> = ({ title, subtitle, description, button, variant }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
