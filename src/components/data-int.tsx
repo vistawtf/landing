@@ -15,7 +15,7 @@ export const DataInt: FC = () => (
       width="341.014"
       height="200.169"
       stroke="currentColor"
-      stroke-width="0.924401"
+      strokeWidth="0.924401"
     />
     <mask
       id="mask0_1160_995"
@@ -33,7 +33,7 @@ export const DataInt: FC = () => (
         height="200.169"
         fill="#2962FF"
         stroke="currentColor"
-        stroke-width="0.924401"
+        strokeWidth="0.924401"
       />
     </mask>
     <g mask="url(#mask0_1160_995)">

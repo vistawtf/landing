@@ -15,7 +15,7 @@ export const DataEng: FC = () => (
       width="341.014"
       height="200.169"
       stroke="currentColor"
-      stroke-width="0.924401"
+      strokeWidth="0.924401"
     ></rect>
     <mask
       id="mask0_1160_1151"
@@ -33,7 +33,7 @@ export const DataEng: FC = () => (
         height="200.169"
         fill="currentColor"
         stroke="currentColor"
-        stroke-width="0.924401"
+        strokeWidth="0.924401"
       ></rect>
     </mask>
     <g mask="url(#mask0_1160_1151)">

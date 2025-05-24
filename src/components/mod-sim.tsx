@@ -15,7 +15,7 @@ export const ModSim: FC = () => (
       width="341.014"
       height="200.169"
       stroke="currentColor"
-      stroke-width="0.924401"
+      strokeWidth="0.924401"
     />
     <mask
       id="mask0_1160_1829"
@@ -35,7 +35,7 @@ export const ModSim: FC = () => (
         height="200.169"
         fill="currentColor"
         stroke="currentColor"
-        stroke-width="0.924401"
+        strokeWidth="0.924401"
       />
     </mask>
     <g mask="url(#mask0_1160_1829)">
