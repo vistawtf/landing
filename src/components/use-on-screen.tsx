@@ -3,18 +3,26 @@ import { useEffect, useMemo, useRef, useState, type FC, type RefObject } from 'r
 function useOnScreenHelper(ref: RefObject<HTMLElement>) {
   const [isIntersecting, setIntersecting] = useState(false);
 
-  const observer = useMemo(
-    () => new IntersectionObserver(([entry]) => setIntersecting(entry.isIntersecting)),
-    [ref]
-  );
+  const observer = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    return new IntersectionObserver(([entry]) => setIntersecting(entry.isIntersecting), {
+      root: null,
+      threshold: 0.25
+    });
+  }, [ref]);
 
   useEffect(() => {
+    if (!observer || !ref.current) return;
+
     observer.observe(ref.current);
 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [observer]);
 
   return isIntersecting;
 }
