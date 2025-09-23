@@ -22,7 +22,7 @@ const XIcon: FC<{ href: string }> = ({ href }) => (
 
 
 export const Team: FC = () => (
-  <div className="min-h-[100dvh] flex items-center justify-center py-16" id="team">
+  <div className="flex items-start justify-center pt-16 pb-24" id="team">
     <div>
       <h1 className="text-vista-light text-[46px] md:text-[61px] text-center">The Team</h1>
       <p className="text-vista-gray-light text-lg text-center">

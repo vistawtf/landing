@@ -3,7 +3,7 @@ import { Plasma } from './noise';
 
 export const Footer: FC = () => (
   <Plasma>
-    <div className="z-[100] relative max-w-screen-xl mx-auto px-4 pt-[400px] h-full pb-16">
+    <div className="z-[100] relative max-w-screen-xl mx-auto px-4 pt-[200px] h-full pb-16">
       <div className="flex w-full h-full md:flex-row flex-col-reverse gap-12 md:gap-0">
         <div className="flex flex-col items-center md:items-start md:justify-between h-full w-full">
           <p className="text-vista-gray-light text-[25px] text-shadow-lg text-shadow-black">
