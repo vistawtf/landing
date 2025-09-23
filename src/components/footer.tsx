@@ -50,6 +50,14 @@ export const Footer: FC = () => (
               >
                 GITHUB
               </a>
+              <a
+                href="https://paragraph.com/@vista"
+                className="hover:text-vista-orange-light duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BLOG
+              </a>
             </div>
           </div>
         </div>

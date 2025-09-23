@@ -38,7 +38,9 @@ export const Header: FC = () => {
           </div>
           <a
             className="h-[42px] w-[165px] flex items-center justify-center bg-vista-orange-medium hover:bg-vista-light hover:text-vista-orange cursor-pointer duration-200 text-vista-black rounded-[3px] text-sm font-mono font-medium"
-            href="mailto:info@vista.wtf"
+            href="https://cal.com/rex-vista+isaac-vista"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             BOOK A CALL +
           </a>
