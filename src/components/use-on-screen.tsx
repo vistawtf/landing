@@ -11,7 +11,7 @@ function useOnScreenHelper(ref: RefObject<HTMLElement>) {
     return new IntersectionObserver(([entry]) => setIntersecting(entry.isIntersecting), {
       root: null,
       threshold: 0.1,
-      rootMargin: '-20% 0px -60% 0px'
+      rootMargin: '-10% 0px -40% 0px'
     });
   }, [ref]);
 

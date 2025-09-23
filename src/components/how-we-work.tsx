@@ -4,7 +4,7 @@ import { Work } from './work';
 export const HowWeWork: FC = () => (
   <div className="flex items-center justify-center py-16" id="work">
     <div className="w-full flex justify-between flex-col md:flex-row gap-12">
-      <h3 className="text-[46px] md:text-[76px] text-vista-light leading-none w-full pb-8 md:pb-16">
+      <h3 className="text-[46px] md:text-[76px] text-vista-light leading-none w-full pb-8 md:pb-16 text-center md:text-left">
         <span className="text-vista-gray-light"> How we</span>
         <br />
         Work

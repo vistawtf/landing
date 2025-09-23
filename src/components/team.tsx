@@ -26,12 +26,11 @@ export const Team: FC = () => (
     <div>
       <h1 className="text-vista-light text-[46px] md:text-[61px] text-center">The Team</h1>
       <p className="text-vista-gray-light text-lg text-center">
-        We have built the team you always wanted,
-        <br />
-        so you don&apos;t have to.
+        We have built the team you always wanted,{' '}
+        <span className="md:block">so you don&apos;t have to.</span>
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 justify-items-center">
         <div className="w-72 px-4 pt-6 pb-5 bg-vista-black rounded-xl border border-[#2D2D2D] inline-flex flex-col justify-center items-start gap-2">
           <div className="self-stretch inline-flex justify-between items-center">
             <div className="px-2 py-1.5 bg-[#191919] rounded-sm border border-[#2D2D2D] flex justify-center items-center">

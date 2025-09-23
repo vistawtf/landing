@@ -24,7 +24,7 @@ export const Hero: FC = () => (
       <span className="text-vista-light"> modeling</span>.
     </div>
     <a
-      className="inline-flex items-center justify-center gap-4 border border-vista-light text-vista-light hover:text-black hover:border-transparent hover:bg-vista-light duration-200 cursor-pointer rounded font-mono font-bold px-6 py-4 mb-20 text-base uppercase leading-relaxed tracking-wide w-fit"
+      className="inline-flex items-center justify-center gap-3 md:gap-4 border border-vista-light text-vista-light hover:text-black hover:border-transparent hover:bg-vista-light hover:font-bold duration-200 cursor-pointer rounded font-mono font-medium px-4 md:px-6 py-3 md:py-4 mb-20 text-sm md:text-base uppercase leading-relaxed tracking-wide w-fit"
       href="#solutions"
     >
       EXPLORE OUR SOLUTIONS
