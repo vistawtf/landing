@@ -1,4 +1,4 @@
-# Vista Landing
+# vista landing
 
 Landing page built with Astro, React, and Tailwind CSS.
 
