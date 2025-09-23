@@ -10,7 +10,8 @@ function useOnScreenHelper(ref: RefObject<HTMLElement>) {
 
     return new IntersectionObserver(([entry]) => setIntersecting(entry.isIntersecting), {
       root: null,
-      threshold: 0.25
+      threshold: 0.1,
+      rootMargin: '-10% 0px -40% 0px'
     });
   }, [ref]);
 
