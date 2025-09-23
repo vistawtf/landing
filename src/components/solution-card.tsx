@@ -41,7 +41,7 @@ export const SolutionCard: FC<Props> = ({ title, subtitle, description, button, 
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => {
-        window.open('mailto:info@vista.wtf', '_blank');
+        window.open('https://cal.com/rex-vista+isaac-vista', '_blank');
       }}
     >
       <div>
@@ -72,7 +72,9 @@ export const SolutionCard: FC<Props> = ({ title, subtitle, description, button, 
 
       <div className="flex justify-start">
         <a
-          href="mailto:info@vista.wtf"
+          href="https://cal.com/rex-vista+isaac-vista"
+          target="_blank"
+          rel="noopener noreferrer"
           className={`uppercase text-xs font-bold  h-[36px] flex items-center justify-center border border-vista-light rounded mt-8 transition duration-300 ease-in-out px-4 ${
             hovered ? 'text-vista-black bg-vista-light' : 'text-vista-light'
           }`}
