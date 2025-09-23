@@ -10,11 +10,10 @@ export const ActiveTabsContext = createContext<ActiveTabsContextType>({
   setActiveTabs: () => {}
 });
 
-export type Tabs = 'home' | 'solutions' | 'work' | 'about' | 'team';
+export type Tabs = 'home' | 'solutions' | 'work' | 'team';
 
 function getActiveTab(tabs: Set<Tabs>): Tabs | undefined {
   if (tabs.has('team')) return 'team';
-  if (tabs.has('about')) return 'about';
   if (tabs.has('work')) return 'work';
   if (tabs.has('solutions')) return 'solutions';
   if (tabs.has('home')) return 'home';
@@ -33,7 +32,6 @@ export const Header: FC = () => {
             <Link href="#home" title="HOME" active={activeTab === 'home'} />
             <Link href="#solutions" title="SOLUTIONS" active={activeTab === 'solutions'} />
             <Link href="#work" title="WORK" active={activeTab === 'work'} />
-            <Link href="#about" title="ABOUT" active={activeTab === 'about'} />
             <Link href="#team" title="TEAM" active={activeTab === 'team'} />
           </div>
           <a

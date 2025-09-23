@@ -21,9 +21,6 @@ export const Footer: FC = () => (
               <a href="#home" className="hover:text-vista-orange-light duration-300">
                 HOME
               </a>
-              <a href="#about" className="hover:text-vista-orange-light duration-300">
-                ABOUT
-              </a>
               <a href="#solutions" className="hover:text-vista-orange-light duration-300">
                 SOLUTIONS
               </a>
