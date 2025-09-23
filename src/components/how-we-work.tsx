@@ -2,9 +2,9 @@ import type { FC } from 'react';
 import { Work } from './work';
 
 export const HowWeWork: FC = () => (
-  <div className="min-h-[100dvh] flex items-center justify-center py-16">
+  <div className="flex items-center justify-center py-16" id="work">
     <div className="w-full flex justify-between flex-col md:flex-row gap-12">
-      <h3 className="text-[46px] md:text-[76px] text-vista-light leading-none w-full pb-12 md:pb-64">
+      <h3 className="text-[46px] md:text-[76px] text-vista-light leading-none w-full pb-8 md:pb-16">
         <span className="text-vista-gray-light"> How we</span>
         <br />
         Work

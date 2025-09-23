@@ -2,7 +2,6 @@ import { ActiveTabsContext, Header, type Tabs } from '../components/header.tsx';
 import { Hero } from '../components/hero.tsx';
 import { Solutions } from '../components/solutions.tsx';
 import { HowWeWork } from '../components/how-we-work.tsx';
-import { SelectedWork } from '../components/selected-work.tsx';
 import { Team } from '../components/team.tsx';
 import { Footer } from '../components/footer.tsx';
 import { useState, type FC } from 'react';
@@ -52,10 +51,6 @@ export const Home: FC = () => {
 
         <OnScreen onEnter={() => addActiveTab('work')} onLeave={() => removeActiveTab('work')}>
           <HowWeWork />
-        </OnScreen>
-
-        <OnScreen onEnter={() => addActiveTab('work')} onLeave={() => removeActiveTab('work')}>
-          <SelectedWork />
         </OnScreen>
 
         <OnScreen onEnter={() => addActiveTab('team')} onLeave={() => removeActiveTab('team')}>
