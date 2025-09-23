@@ -10,11 +10,10 @@ export const ActiveTabsContext = createContext<ActiveTabsContextType>({
   setActiveTabs: () => {}
 });
 
-export type Tabs = 'home' | 'solutions' | 'work' | 'about' | 'team';
+export type Tabs = 'home' | 'solutions' | 'work' | 'team';
 
 function getActiveTab(tabs: Set<Tabs>): Tabs | undefined {
   if (tabs.has('team')) return 'team';
-  if (tabs.has('about')) return 'about';
   if (tabs.has('work')) return 'work';
   if (tabs.has('solutions')) return 'solutions';
   if (tabs.has('home')) return 'home';
@@ -33,12 +32,13 @@ export const Header: FC = () => {
             <Link href="#home" title="HOME" active={activeTab === 'home'} />
             <Link href="#solutions" title="SOLUTIONS" active={activeTab === 'solutions'} />
             <Link href="#work" title="WORK" active={activeTab === 'work'} />
-            <Link href="#about" title="ABOUT" active={activeTab === 'about'} />
             <Link href="#team" title="TEAM" active={activeTab === 'team'} />
           </div>
           <a
             className="h-[42px] w-[165px] flex items-center justify-center bg-vista-orange-medium hover:bg-vista-light hover:text-vista-orange cursor-pointer duration-200 text-vista-black rounded-[3px] text-sm font-mono font-medium"
-            href="mailto:info@vista.wtf"
+            href="https://cal.com/rex-vista+isaac-vista"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             BOOK A CALL +
           </a>

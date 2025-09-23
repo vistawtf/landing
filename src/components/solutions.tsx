@@ -4,7 +4,7 @@ export const Solutions = () => {
   return (
     <div className="min-h-[100dvh] flex items-center justify-center py-16" id="solutions">
       <div className="flex gap-12 w-full flex-col">
-        <div className="text-[46px] md:text-[76px] text-vista-light leading-none w-full">
+        <div className="text-[46px] md:text-[76px] text-vista-light leading-none w-full text-center">
           Our Solutions
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
